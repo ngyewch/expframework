@@ -1,0 +1,23 @@
+version: 3
+
+tasks:
+  build:
+    desc: Build
+    cmds:
+      - go mod tidy
+      - go build ./...
+
+  outdated:
+    desc: Show dependency updates
+    aliases: [ dependencyUpdates ]
+    cmds:
+      - go list -u -m -json all | go-mod-outdated -update -direct
+
+  lint:
+    desc: Lint
+    cmds:
+      - golangci-lint run
+
+  mingo:
+    cmds:
+      - mingo -tests -v
