@@ -1,11 +1,9 @@
 package expframework
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"log/slog"
-	"os"
 	"path/filepath"
 	"time"
 )
@@ -107,22 +105,5 @@ func (context *TrialContext[SessionProperties, TrialProperties]) Close() error {
 }
 
 func (context *TrialContext[SessionProperties, TrialProperties]) writeInfo() error {
-	outputFile := filepath.Join(context.baseDirectory, "info.json")
-	f, err := os.Create(outputFile)
-	if err != nil {
-		return err
-	}
-	defer func(f *os.File) {
-		_ = f.Close()
-	}(f)
-
-	jsonEncoder := json.NewEncoder(f)
-	jsonEncoder.SetEscapeHTML(false)
-	jsonEncoder.SetIndent("", "  ")
-	err = jsonEncoder.Encode(context.Info())
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return writeToJsonFile(filepath.Join(context.baseDirectory, "info.json"), context.Info())
 }
