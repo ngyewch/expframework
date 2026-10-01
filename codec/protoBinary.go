@@ -10,12 +10,12 @@ type ProtoCodec[T any, PT interface {
 }] struct {
 }
 
-func (codec ProtoCodec[T, PT]) MarshalBinary(v *T) ([]byte, error) {
+func (codec ProtoCodec[T, PT]) MarshalBinary(v PT) ([]byte, error) {
 	msgPtr := PT(v)
 	return proto.Marshal(msgPtr)
 }
 
-func (codec ProtoCodec[T, PT]) UnmarshalBinary(data []byte) (*T, error) {
+func (codec ProtoCodec[T, PT]) UnmarshalBinary(data []byte) (PT, error) {
 	var msg T
 	msgPtr := PT(&msg)
 	err := proto.Unmarshal(data, msgPtr)

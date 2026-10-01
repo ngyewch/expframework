@@ -11,7 +11,7 @@ type ProtoJsonCodec[T any, PT interface {
 }] struct {
 }
 
-func (codec ProtoJsonCodec[T, PT]) MarshalBinary(v *T) ([]byte, error) {
+func (codec ProtoJsonCodec[T, PT]) MarshalBinary(v PT) ([]byte, error) {
 	marshalOptions := protojson.MarshalOptions{
 		Multiline: true,
 		Indent:    " ",
@@ -20,7 +20,7 @@ func (codec ProtoJsonCodec[T, PT]) MarshalBinary(v *T) ([]byte, error) {
 	return marshalOptions.Marshal(msgPtr)
 }
 
-func (codec ProtoJsonCodec[T, PT]) UnmarshalBinary(data []byte) (*T, error) {
+func (codec ProtoJsonCodec[T, PT]) UnmarshalBinary(data []byte) (PT, error) {
 	var msg T
 	msgPtr := PT(&msg)
 	err := protojson.Unmarshal(data, msgPtr)
