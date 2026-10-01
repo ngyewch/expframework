@@ -3,6 +3,7 @@ module github.com/ngyewch/expframework
 go 1.26.0
 
 require (
+	github.com/adrg/xdg v0.5.3
 	github.com/go-sprout/sprout v1.1.2
 	github.com/jacoblockett/gosan/v3 v3.0.1
 	github.com/lestrrat-go/strftime v1.2.0
@@ -16,5 +17,6 @@ require (
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/spf13/cast v1.10.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
+	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/text v0.42.0 // indirect
 )
