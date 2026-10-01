@@ -1,4 +1,4 @@
-package state
+package codec
 
 import (
 	"google.golang.org/protobuf/encoding/protojson"

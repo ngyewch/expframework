@@ -1,4 +1,4 @@
-package state
+package codec
 
 type Codec[T any] interface {
 	MarshalBinary(v *T) ([]byte, error)

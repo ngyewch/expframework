@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/adrg/xdg"
+	"github.com/ngyewch/expframework/codec"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -14,13 +15,13 @@ type Manager[T any, PT interface {
 }] struct {
 	appId   string
 	groupId string
-	codec   Codec[T]
+	codec   codec.Codec[T]
 }
 
 func NewManager[T any, PT interface {
 	*T
 	proto.Message
-}](appId string, groupId string, codec Codec[T]) *Manager[T, PT] {
+}](appId string, groupId string, codec codec.Codec[T]) *Manager[T, PT] {
 	return &Manager[T, PT]{
 		appId:   appId,
 		groupId: groupId,
