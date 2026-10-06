@@ -16,7 +16,7 @@ func (codec YamlCodec[T, PT]) MarshalBinary(v PT) ([]byte, error) {
 func (codec YamlCodec[T, PT]) UnmarshalBinary(data []byte) (PT, error) {
 	var msg T
 	msgPtr := PT(&msg)
-	err := yaml.Unmarshal(data, msgPtr)
+	err := yaml.UnmarshalWithOptions(data, msgPtr, yaml.Strict())
 	if err != nil {
 		return nil, err
 	}
