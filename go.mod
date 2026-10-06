@@ -7,6 +7,7 @@ require (
 	github.com/coder/websocket v1.8.15
 	github.com/deckarep/golang-set/v2 v2.9.0
 	github.com/go-sprout/sprout v1.1.2
+	github.com/goccy/go-yaml v1.19.2
 	github.com/jacoblockett/gosan/v3 v3.0.1
 	github.com/lestrrat-go/strftime v1.2.0
 	github.com/ngyewch/sprout-ext v0.2.0
