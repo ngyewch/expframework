@@ -6,6 +6,7 @@ tasks:
     cmds:
       - go mod tidy
       - go build ./...
+      - goreleaser build --snapshot --clean --single-target --output dist/expframework
 
   outdated:
     desc: Show dependency updates
@@ -21,3 +22,11 @@ tasks:
   mingo:
     cmds:
       - mingo -tests -v
+
+  test-camera-capture:
+    deps: [ build ]
+    cmds:
+      - dist/expframework test camera capture {{.CLI_ARGS}}
+    env:
+      CONFIG_FILE: .test/cameraCapture/config.yml
+      LOG_LEVEL: debug
