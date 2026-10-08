@@ -34,7 +34,7 @@ func New(cfg Config) *IPCamera {
 	}
 }
 
-func (camera *IPCamera) Capture(streamId string, outputPath string, options ...CaptureOption) (*Recording, error) {
+func (camera *IPCamera) Capture(streamId string, outputPath string, options ...CaptureOption) (Recording, error) {
 	if camera.cfg.Disabled {
 		return nil, fmt.Errorf("camera disabled")
 	}

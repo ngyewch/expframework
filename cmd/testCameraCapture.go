@@ -56,7 +56,7 @@ func doTestCameraCapture(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-	defer func(recording *ipcamera.Recording) {
+	defer func(recording ipcamera.Recording) {
 		_ = recording.Close()
 	}(recording)
 
