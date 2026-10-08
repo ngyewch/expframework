@@ -28,7 +28,7 @@ tasks:
     cmds:
       - dist/expframework test camera capture {{.CLI_ARGS}}
     env:
-      CONFIG_FILE: .test/cameraCapture/config.yml
+      CONFIG_FILE: .test/testCamera/config.yml
       LOG_LEVEL: debug
 
   test-camera-mjpeg:
@@ -36,5 +36,5 @@ tasks:
     cmds:
       - dist/expframework test camera mjpeg
     env:
-      CONFIG_FILE: .test/cameraCapture/config.yml
+      CONFIG_FILE: .test/testCamera/config.yml
       LOG_LEVEL: debug
