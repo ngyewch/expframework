@@ -30,3 +30,11 @@ tasks:
     env:
       CONFIG_FILE: .test/cameraCapture/config.yml
       LOG_LEVEL: debug
+
+  test-camera-mjpeg:
+    deps: [ build ]
+    cmds:
+      - dist/expframework test camera mjpeg
+    env:
+      CONFIG_FILE: .test/cameraCapture/config.yml
+      LOG_LEVEL: debug

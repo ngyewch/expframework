@@ -1,16 +1,39 @@
 cameras:
-  - id: camera1
+  - id: topview1
     address: 127.0.0.1
     credentials:
       username: username
       password: password
     streams:
-      - id: rtsp-stream
+      - id: main
         type: rtsp/tcp
         port: 8554
         path: /topview1
         timeout: 10s
-      - id: mjpeg-stream
+      - id: preview
         type: mjpeg/http
-        port: 8080
+        port: 8090
         path: /topview1
+        timeout: 10s
+        dimensions:
+          width: 640
+          height: 360
+  - id: uw1
+    address: 127.0.0.1
+    credentials:
+      username: username
+      password: password
+    streams:
+      - id: main
+        type: rtsp/tcp
+        port: 8554
+        path: /uw1
+        timeout: 10s
+      - id: preview
+        type: mjpeg/http
+        port: 8091
+        path: /uw1
+        timeout: 10s
+        dimensions:
+          width: 640
+          height: 360

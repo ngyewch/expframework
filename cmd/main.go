@@ -36,6 +36,13 @@ var (
 									configFileFlag,
 								},
 							},
+							{
+								Name:   "mjpeg",
+								Action: doTestCameraMJPEG,
+								Flags: []cli.Flag{
+									configFileFlag,
+								},
+							},
 						},
 					},
 				},

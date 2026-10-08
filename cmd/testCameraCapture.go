@@ -7,30 +7,11 @@ import (
 	"time"
 
 	"github.com/ngyewch/expframework/camera/ipcamera"
-	"github.com/ngyewch/expframework/config"
 	"github.com/urfave/cli/v3"
 	"golang.org/x/sync/errgroup"
 )
 
-type TestCameraCaptureConfig struct {
-	Cameras []ipcamera.Config `json:"cameras" validate:"dive"`
-}
-
-func (config TestCameraCaptureConfig) Camera(id string) (*ipcamera.Config, error) {
-	for _, cfg := range config.Cameras {
-		if cfg.Id == id {
-			return &cfg, nil
-		}
-	}
-	return nil, fmt.Errorf("camera not found: %s", id)
-}
-
 func doTestCameraCapture(ctx context.Context, cmd *cli.Command) error {
-	configFile := cmd.String(configFileFlag.Name)
-	if configFile == "" {
-		return fmt.Errorf("no config file specified")
-	}
-
 	cameraId := cmd.Args().Get(0)
 	streamId := cmd.Args().Get(1)
 
@@ -41,7 +22,7 @@ func doTestCameraCapture(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("no stream id specified")
 	}
 
-	cfg, err := config.LoadYAMLConfig[TestCameraCaptureConfig, *TestCameraCaptureConfig](configFile)
+	cfg, err := getTestCameraConfig(ctx, cmd)
 	if err != nil {
 		return err
 	}
