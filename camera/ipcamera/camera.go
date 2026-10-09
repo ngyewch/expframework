@@ -35,6 +35,10 @@ func New(cfg Config) *IPCamera {
 	}
 }
 
+func (camera *IPCamera) Config() Config {
+	return camera.cfg
+}
+
 func (camera *IPCamera) HasStream(streamId string) bool {
 	if camera.cfg.Disabled {
 		return false

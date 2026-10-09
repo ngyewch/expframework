@@ -35,6 +35,14 @@ func newFFMPEGRecording(config Config, streamConfig StreamConfig, outputPath str
 	}
 }
 
+func (recording *FFMPEGRecording) Config() Config {
+	return recording.config
+}
+
+func (recording *FFMPEGRecording) StreamConfig() StreamConfig {
+	return recording.streamConfig
+}
+
 func (recording *FFMPEGRecording) OutputPath() string {
 	return recording.outputPath
 }
