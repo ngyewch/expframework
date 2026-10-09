@@ -3,6 +3,7 @@ package ipcamera
 import (
 	"fmt"
 	"log/slog"
+	"slices"
 )
 
 type CaptureOption func(*captureOptions)
@@ -32,6 +33,36 @@ func New(cfg Config) *IPCamera {
 	return &IPCamera{
 		cfg: cfg,
 	}
+}
+
+func (camera *IPCamera) HasStream(streamId string) bool {
+	if camera.cfg.Disabled {
+		return false
+	}
+	streamConfig := camera.cfg.Stream(streamId)
+	if streamConfig == nil {
+		return false
+	}
+	if streamConfig.Disabled {
+		return false
+	}
+	return true
+}
+
+func (camera *IPCamera) StreamIdsWithTag(tag string) []string {
+	if camera.cfg.Disabled {
+		return nil
+	}
+	var streamIds []string
+	for _, streamConfig := range camera.cfg.Streams {
+		if streamConfig.Disabled {
+			continue
+		}
+		if slices.Contains(streamConfig.Tags, tag) {
+			streamIds = append(streamIds, streamConfig.Id)
+		}
+	}
+	return streamIds
 }
 
 func (camera *IPCamera) Capture(streamId string, outputPath string, options ...CaptureOption) (Recording, error) {

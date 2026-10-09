@@ -27,6 +27,7 @@ func (cfg Config) Stream(id string) *StreamConfig {
 type StreamConfig struct {
 	Id          string                            `json:"id" validate:"required"`
 	Disabled    bool                              `json:"disabled"`
+	Tags        []string                          `json:"tags"`
 	Credentials *UsernamePasswordCredentialConfig `json:"credentials"`
 	Type        StreamType                        `json:"type" validate:"required"`
 	Port        uint16                            `json:"port"`
