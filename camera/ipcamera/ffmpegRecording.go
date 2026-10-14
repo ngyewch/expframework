@@ -76,7 +76,7 @@ func (recording *FFMPEGRecording) Start(ctx context.Context) error {
 		return err
 	}
 	//args = append(args, "-fflags", "+genpts+igndts")
-	args = append(args, "-fflags", "+genpts")
+	//args = append(args, "-fflags", "+genpts")
 	args = append(args, "-i", inputUrl.String())
 	args = append(args, "-codec", "copy")
 	args = append(args, "-flush_packets", "1")
